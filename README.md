@@ -21,4 +21,5 @@ Includes three separate interfaces for students, officials and mess managers.
 * Choose a mess from the list of available messes
 * Mess will be allotted only if fee details are verfied by officials
 * Mess will be allotted only if it is not full (i.e its present strength is equal to max strength assigned by official)
+* Mess will be allotted only if student's gender with gender intake of mess
 * Mess card generation after mess is alloted
