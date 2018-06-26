@@ -15,7 +15,7 @@ Includes three separate interfaces for students, officials and mess managers.
 * Get the list and details of students alloted for his mess
 
 ## Student Interface
-####### Features
+###### Features
 * Create account with proper credentials
 * Pay hostel or mess fees
 * Choose a mess from the list of available messes
