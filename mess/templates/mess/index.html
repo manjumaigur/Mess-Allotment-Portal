@@ -1,0 +1,62 @@
+{% extends 'mess/base.html' %}
+
+{% block title %}Mess Allotment Portal{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-offset-4 col-md-offset-4 col-sm-4 col-md-4">
+			<div class="panel">
+				<div class="panel-body">
+					{% if messages %}
+						{% include 'mess/messages.html' %}
+					{% endif %}
+
+					<h3>Mess List</h3>
+
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Mess Name</th>
+								<th>Type</th>
+								<th>Gender Intake</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for mess in mess_list %}
+								<tr>
+									<td>
+										<a href="{% url 'mess:mess_detail' mess.id %}">{{ mess.name }}</a>
+									</td>
+									<td>
+										{% if mess.is_nonVeg %}
+											<span style="color:red;">Non-Vegetarian</span>
+										{% else %}
+											<span style="color:green;">Vegetarian</span>
+										{% endif %}	
+									</td>
+									<td>
+										{% if mess.gender_intake == 'M' %}
+											Male
+										{% else %}
+											Female
+										{% endif %}
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					{% if user.hostelofficial %}
+						<div class="container-fluid" style="text-align: center;">
+							<a href="{% url 'mess:mess_create' %}"><button class="btn btn-success">Create Mess</button></a>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>		
+	</div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+.img-area {
+	max-width: 100px;
+	float: left;
+}
+
+.pdf-header {
+	width: 100%;
+	position: relative; 
+	overflow: hidden;
+}
+
+.form-header {
+	width: 70%; 
+	float: left;
+}
+
+.pdf-table {
+	border: 0;
+	margin-left: 0;
+}
+
+.pdf-photo {
+	border: 1px solid black;
+	height: 142px;
+	width: 110px;
+	float: right;
+}

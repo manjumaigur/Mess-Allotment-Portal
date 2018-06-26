@@ -1,0 +1,49 @@
+.navbar {
+	border-radius: 0;
+	background-color: #000000;
+	color: white;
+}
+
+.navbar .navbar-brand {
+	color: white !important;
+}
+
+
+h2 {
+	margin-top: 10px;
+	margin-bottom: 5px;
+	font-family: "Berkshire Swash", cursive;
+}
+
+h2 a:link, h2 a:visited {
+	color: #000000;
+	text-decoration: none;
+}
+
+h2 a:hover {
+	text-decoration: underline;
+}
+
+
+
+/*forms*/
+label {
+	float: left;
+	clear: both;
+	margin-bottom: 4px;
+}
+
+input, textarea {
+	clear: both;
+	float: left;
+	margin: 0 0 10px;
+	background: #ededed;
+	border: 0;
+	padding: 6px 10px;
+}
+
+input[type=submit] {
+	font-weight: bold;
+	padding: 10px 20px;
+	text-transform: uppercase;
+}

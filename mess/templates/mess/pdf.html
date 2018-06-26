@@ -1,0 +1,67 @@
+<html>
+<head>
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/pdf.css' %}">
+</head>
+<body>
+	<div class="pdf-header">
+		<div class="form-header">
+			<table class="pdf-table">
+				<tbody>
+					<tr>
+						<td style="border: 0;" width="100">
+							<img src="{% static 'logo.png' %}" height="100" />
+						</td>
+						<td style="border: 0;" width="400">
+							<h4 align="center"><strong>National Institute of Technology Karnataka, Surathkal</strong></h4>
+							<h4 align="center">P.O. SRINIVASNAGAR, MANGALORE</h4>
+							<h3 align="center"><strong>Mess Card</strong></h3>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="pdf-photo">
+			<img src="{{ profile.profile_pic.url }}" alt="{{ profile.first_name }}" width="110px" />
+		</div>
+	</div>
+		
+		
+	<table class="table table-bordered">
+		<thead>
+			<tr class="success">
+				<th colspan="4" style="text-align: center;">
+					{{ profile.alloted_mess }}
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>Name</th>
+				<td>
+					{{ profile.user.first_name }} {{ profile.user.last_name }}
+				</td>
+				<th>Mess no</th>
+				<td>{{ profile.mess_no }}</td>
+			</tr>
+			<tr>
+				<th>Admission no</th>
+				<td>{{ profile.admission_no }}</td>
+				<th>Roll no</th>
+				<td>{{ profile.roll_no }}</td>		
+			</tr>
+			<tr>
+				<th>Mobile no</th>
+				<td>{{ profile.mobile_no }}</td>
+				<th>E-mail</th>
+				<td>{{ profile.user.email }}</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="container-fluid" style="text-align: center;">
+		<button class="btn btn-success btn-xs" onclick="window.print()">
+			Print			
+		</button>
+	</div>
+</body>

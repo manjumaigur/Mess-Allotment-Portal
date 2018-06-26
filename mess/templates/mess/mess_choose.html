@@ -1,0 +1,56 @@
+{% extends 'mess/base.html' %}
+
+{% block title %}Choose Mess{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-offset-4 col-md-offset-4 col-sm-4 col-md-4">
+				<div class="panel">
+					<div class="panel-body">
+						{% if messages %}
+							{% include 'mess/messages.html' %}
+						{% endif %}
+
+						<h3>Available Mess</h3>
+
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Mess Name</th>
+									<th>Type</th>
+									<th>Intake</th>
+									<th>Present Strength</th>
+									<th>Choose</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for mess in mess_list %}
+									<tr>
+										<td>{{ mess.name }}</td>
+										<td>{% if mess.is_nonVeg %} 
+												Veg
+											{% else %}
+												Nonveg
+											{% endif %}
+										</td>
+										<td>{{ mess.intake }}</td>
+										<td>{{ mess.present_strength }}</td>
+										<td>
+											<a href="{% url 'mess:mess_allot' mess.id %}"><button class="btn btn-success btn-sm">Choose Mess</button></a>
+										</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'mess/base.html' %}
+
+{% block title %}Fee Details{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-offset-4 col-md-offset-4 col-sm-4 col-md-4">
+			<div class="panel">
+				<div class="panel-body">
+					{% if messages %}
+						{% include 'mess/messages.html' %}
+					{% endif %}
+					<table class="table">
+						<thead>
+							<tr>
+								<th colspan="2" style="text-align: center;">{{ fees.user.first_name }} {{ fees.user.last_name }}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>Transaction no : </th>
+								<td>{{ fees.transaction_no }}</td>
+							</tr>
+							<tr>
+								<th>Paid on : </th>
+								<td>{{ fees.paid_on }}</td>
+							</tr>
+							<tr>
+								<th>Amount paid : </th>
+								<td>{{ fees.fees }}</td>
+							</tr>
+							<tr>
+								<th>Verfication : </th>
+								<td>
+									{% if fees.is_fees_paid and not fees.verified %}
+										<span style="color: blue;">Pending</span>
+									{% elif fees.is_fees_paid and fees.verified %}
+										<span style="color: green;">Verified</span>
+									{% else %}
+										<span style="color: red;">Payment Rejected</span>
+									{% endif %}
+								</td>
+							</tr>
+							<tr>
+								<th>Receipt : </th>
+								<td><a href="{{ fees.fees_receipt.url }}">View</a></td>
+							</tr>
+						</tbody>
+					</table>
+
+					{% if user.hostelofficial %}
+						{% if fees.is_fees_paid and not fees.verified %}
+							<a href="{% url 'mess:fee_verify' fees.id %}"><button class="btn btn-default">Verified</button></a>
+							<a href="{% url 'mess:fee_reject' fees.id%}"><button class="btn btn-default">Rejected</button></a>
+						{% elif fees.is_fees_paid and fees.verified %}
+							<button onclick="window.print()" class="btn btn-default btn-sm">Print</button>
+						{% endif %}
+					{% endif %}
+					
+					{% if user.manager and fees.verified %}
+						<button onclick="window.print()" class="btn btn-default btn-xs">Print</button>
+					{% endif %}
+
+					{% if user.student and not fees.verified %}
+						<div class="container-fluid" style="text-align: center;">
+							<a href="{% url 'mess:edit_fees' fees.id %}"><button class="btn btn-info">Edit Details</button></a>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

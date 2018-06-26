@@ -1,0 +1,96 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %} {{ profile.user.first_name }} {% endblock %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="col-sm-4 col-md-4">
+						<div class="thumbnail">
+							{% if profile.profile_pic %}
+								<img class="profilePic" src="{{ profile.profile_pic.url }}" alt="{{ profile.first_name }}" width="110px" />
+							{% endif %}
+							
+
+							<div class="caption text-center">
+								{{ profile.user.username }}
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-8 col-md-9">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>
+										{{ profile.first_name }} {{ profile.last_name }}
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										Mess no : {{ profile.mess_no }}
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Roll no : {{ profile.roll_no }}
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Gender : {{ profile.gender }}
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Admission no : {{ profile.admission_no }}
+									</td>
+								</tr>
+								<tr>
+									<td>
+										E-mail : {{ profile.user.emai }}
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Mobile no : {{ profile.mobile_no }}
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Mess Name : {{ profile.alloted_mess }}
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Fees Payment Status : 
+										{% if profile.user.fee.is_fees_paid %}
+											Paid
+										{% else %}
+											Not Paid
+										{% endif %}
+									</td>
+								</tr>
+							{% if profile.user.fee.is_fees_paid %}
+								<tr>
+									<td>
+										Transaction no : {{ profile.user.fee.transaction_no }}
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Amount Paid : {{ profile.user.fee.fees }}
+									</td>
+								</tr>
+							{% endif %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

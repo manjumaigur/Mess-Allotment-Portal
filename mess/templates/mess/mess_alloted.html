@@ -1,0 +1,23 @@
+{% extends 'mess/base.html' %}
+
+{% block title %}Mess alloted{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-offset-4 col-md-offset-4 col-sm-4 col-md-4">
+				<div class="panel">
+					<div class="panel-body">
+						{% if messages %}
+							{% include 'mess/messages.html' %}
+						{% endif %}
+						<h4><strong>Mess Alloted</strong></h4>
+						<h5>Download your Mess Card from here</h5>
+						<a href="{% url 'mess:mess_card' %}"><button class="btn btn-success">View</button></a>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+
+{% endblock %}

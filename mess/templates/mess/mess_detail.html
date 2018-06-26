@@ -1,0 +1,95 @@
+{% extends 'mess/base.html' %}
+
+{% block title %}{{ mess.name }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-offset-4 col-md-offset-4 col-sm-4 col-md-4">
+			<div class="panel">
+				<div class="panel-body">
+					{% if messages %}
+						{% include 'mess/messages.html' %}
+					{% endif %}
+					<table class="table">
+						<thead>
+							<tr>
+								<th colspan="2" style="text-align: center;">{{ mess.name }}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>Caterers : </th>
+								<td>{{ mess.caterer_name }}</td>
+							</tr>
+							<tr>
+								<th>Manager : </th>
+								<td>{{ mess.manager_name }}</td>
+							</tr>
+							<tr>
+								<th>Address : </th>
+								<td>{{ mess.address }}</td>
+							</tr>
+							<tr>
+								<th>Gender Intake : </th>
+								<td>
+									{% if mess.gender_intake == 'M' %}
+										Male
+									{% else %}
+										Female
+									{% endif %}
+								</td>
+							</tr>
+							<tr>
+								<th>Type : </th>
+								<td>
+									{% if mess.is_nonVeg %}
+										<span style="color:red;">Non-Vegetarian</span>
+									{% else %}
+										<span style="color:green;">Vegetarian</span>
+									{% endif %}	
+								</td>
+							</tr>
+							<tr>
+								<th>Intake : </th>
+								<td>{{ mess.intake }}</td>
+							</tr>
+							<tr>
+								<th>Present Strength : </th>
+								<td>{{ mess.present_strength }}</td>
+							</tr>
+							<tr>
+								<th>Allotments : </th>
+								<td>
+									{% if mess.is_full %}
+										<span style="color:red;">Closed</span>
+									{% else %}
+										<span style="color:green;">Open</span>
+									{% endif %}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					{% if user.hostelofficial %}
+						<a href="{% url 'mess:mess_edit' mess.id %}"><button class="btn btn-info">Edit Mess Details</button></a>
+						<a href="{% url 'mess:mess_members' mess.id%}"><button class="btn btn-success">Mess Members</button></a>
+					{% endif %}
+					
+					{% if user.manager and mess.manager_name == user %}
+						<a href="{% url 'mess:mess_members' mess.id%}"><button class="btn btn-success">Mess Members</button></a>
+					{% endif %}
+
+					{% if user.student and not mess.is_full %}
+						{% if user.student.gender == mess.gender_intake %}
+							<a href="{% url 'mess:mess_allot' mess.id%}"><button class="btn btn-success">Choose Mess</button></a>
+						{% else %}
+							<div class="container-fluid"><p>Only opposite gender can choose this mess</p></div>
+						{% endif %}
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

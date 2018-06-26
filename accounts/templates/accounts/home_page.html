@@ -1,0 +1,67 @@
+{% extends 'accounts/profile_base.html' %}
+
+{% block title %}Mess Allotment Portal{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+	<div class="row">
+		<h3 style="text-align: center;">Login</h3>
+		<a href="{% url 'accounts:login' %}">
+			<div class="col-sm-4 col-md-4 col-12 col-sm-offset-4 col-md-offset-4">
+				<div class="panel homePage" style="background-color: #FFC300;">
+					<div class="panel-body">
+						<span class="glyphicon glyphicon-check"></span>&nbsp;
+						Already Registered?
+						<br>
+						<b class="homeBig">Login</b>&nbsp;
+						<span class="glyphicon glyphicon-log-in"></span>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+	<div class="row">
+		<hr>
+		<h3 style="text-align: center;">Register</h3>
+		<a href="{% url 'accounts:register' 'student' %}">
+			<div class="col-sm-4 col-md-4 col-12">
+				<div class="panel homePage" style="background-color: #FF5733;">
+					<div class="panel-body">
+						<span class="glyphicon glyphicon-user"></span>&nbsp;Student?
+						<br>
+						<b class="homeBig">Register as Student</b>&nbsp;
+						<span class="glyphicon glyphicon-plus-sign"></span>		
+					</div>
+				</div>
+			</div>
+		</a>
+		<a href="{% url 'accounts:register' 'official' %}">
+			<div class="col-sm-4 col-md-4 col-12">
+				<div class="panel homePage" style="background-color: #900C3F;">
+					<div class="panel-body">
+						<span class="glyphicon glyphicon-user"></span>&nbsp;Official?
+						<br>
+						<b class="homeBig">Register as Official</b>&nbsp;
+						<span class="glyphicon glyphicon-plus-sign"></span>
+					</div>
+				</div>
+			</div>
+		</a>
+		<a href="{% url 'accounts:register' 'manager' %}">
+			<div class="col-sm-4 col-md-4 col-12">
+				<div class="panel homePage" style="background-color: #581845 ;">
+					<div class="panel-body">
+						<span class="glyphicon glyphicon-user"></span>&nbsp;
+						Manager?
+						<br>
+						<b class="homeBig">Register as Manager</b>&nbsp;
+						<span class="glyphicon glyphicon-plus-sign"></span>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+</div>
+
+{% endblock %}

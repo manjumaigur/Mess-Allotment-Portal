@@ -1,0 +1,176 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %} {{ profile.user.first_name }} {{ profile.user.last_name }} {% endblock %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				{% if user.student %}
+					<div class="row" style="text-align: center;">		
+						<div class="col-sm-4 col-md-4 col-sm-offset-4 col-md-offset-4">
+							<div class="thumbnail">
+								{% if profile.profile_pic %}
+									<img class="profilePic" src="{{ profile.profile_pic.url }}" alt="{{ profile.first_name }}" width="110px" />
+								{% endif %}
+								
+
+								<div class="caption text-center">
+									{{ profile.user.username }}
+								</div>
+							</div>
+							<div class="container-fluid">
+								<a href="{% url 'accounts:edit_student' %}"><button type="submit" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span>&nbsp; Edit Profile</button></a>
+							</div>
+
+							<div class="col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2">
+								<table class="table">
+									<thead>
+										<tr>
+											<th style="text-align: center;">
+												{{ profile.user.first_name }} {{ profile.user.last_name }}
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												Mess no : {{ profile.mess_no }}
+											</td>
+										</tr>
+										<tr>
+											<td>
+												Roll no : {{ profile.roll_no }}
+											</td>
+										</tr>
+										<tr>
+											<td>
+												Gender : {{ profile.gender }}
+											</td>
+										</tr>
+										<tr>
+											<td>
+												Admission no : {{ profile.admission_no }}
+											</td>
+										</tr>
+										<tr>
+											<td>
+												E-mail : {{ profile.user.email }}
+											</td>
+										</tr>
+										<tr>
+											<td>
+												Mobile no : {{ profile.mobile_no }}
+											</td>
+										</tr>
+										<tr>
+											<td>
+												Mess Allotment Status :
+												{% if profile.is_mess_alloted %}
+													Alloted
+												{% else %}
+													Not Alloted
+												{% endif %}
+											</td>
+										</tr>
+									{% if user.is_mess_alloted %}
+										<tr>
+											<td>
+												Mess Name : {{ profile.mess_name }}
+											</td>
+										</tr>
+									{% endif %}
+										<tr>
+											<td>
+												Fees Payment Status : 
+												{% if profile.user.fee.is_fees_paid %}
+													Paid
+												{% else %}
+													Not Paid
+												{% endif %}
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				{% elif user.hostelofficial %}
+					<div class="row">
+						<div class="col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>{{ profile.user.first_name }} {{ profile.user.last_name }}</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											Employee id : {{ profile.employee_id }}
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Designation : {{ profile.designation }}
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Mobile no : {{ profile.mobile_no }}
+										</td>
+									</tr>
+								</tbody>
+							</table>	
+						</div>
+					</div>
+					<div class="row">
+						<div class="container-fluid" style="text-align: center;">
+							<a href="{% url 'accounts:edit_official' %}"><button type="submit" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span>&nbsp; Edit Profile</button></a>
+						</div>
+					</div>
+				{% elif user.manager %}	
+					<div class="row">	
+						<div class="col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>{{ profile.user.first_name }} {{ profile.user.last_name }}</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											Manager id : {{ profile.manager_id }}
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Mess : {{ profile.user.mess }}
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Mobile no : {{ profile.mobile_no }}
+										</td>
+									</tr>
+								</tbody>
+							</table>	
+						</div>
+					</div>
+					<div class="row">
+						<div class="container-fluid" style="text-align: center;">
+							<a href="{% url 'accounts:edit_manager' %}"><button type="submit" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span>&nbsp; Edit Profile</button></a>
+						</div>
+					</div>
+				{% else %}
+					<div class="row">
+						<div class="container-fluid">
+							<p class="text-danger">No Dashboard</p>
+						</div>		
+					</div>		
+				{% endif %}
+			</div>
+		</div>
+	</div>
+{% endblock %}
